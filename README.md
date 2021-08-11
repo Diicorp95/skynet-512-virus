@@ -1,8 +1,8 @@
 # [![](https://win98icons.alexmeub.com/icons/png/executable-0.png)](#) Virus.DOS.SkyNet-512
 Virus.DOS.SkyNet-512 — source code. Decompiled with Diicorp95's Decomp.AI.
 
-* [Original source code](https://github.com/Diicorp95/terminator-virus/blob/main/skynet.asm)
-* [Bugfix of improper use of PC-Beeper](#) — **WORK IN PROGRESS!**
+* [Original source code](https://github.com/Diicorp95/skynet-512-virus/blob/main/skynet.asm)
+* [Bugfix of improper use of PC-Beeper](https://github.com/Diicorp95/skynet-512-virus/blob/main/skynet_fix.asm)
 <hr>
 
 *Hm-m-m... Any chance of finding the author of virus?*<br>

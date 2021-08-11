@@ -1,5 +1,6 @@
-; "Virus.DOS.SkyNet-512" / skynet.com (512)
+; "Virus.DOS.SkyNet-512". Patch: PC-Beeper improper use.
 ; Either author or license are unknown, so I'll use UNLICENSE.
+; Patch (c) Larry "Diicorp95" Holst, 2021.
 
 ; Flat Assembler syntax
 
@@ -9,8 +10,8 @@
 new_line equ 0x0D; For SkyNet terminal simulator session
 cr_lf equ 0x0D,0x0A; Microsoft uses the combination to set a new line, you know
 color_attr equ 0x4E;< Color attribute $4E (yellow FG on dark red BG)
-empty_char equ ' '
-match xx yy,color_attr empty_char {video_data equ xx#yy}; Concatenation
+empty_char equ 0x20; ' '  |
+video_data equ 0x4E20;<---|
 beep_cycles equ 0x0100
 ;---
 start:; "Start"
@@ -20,7 +21,7 @@ start:; "Start"
     mov ah,0x09
     int 0x21
     mov al,0x10;< ???
-    call v01E9
+    call v01E9; Get random data in AL,DL (the purpose is unknown)
     call v0118; All the visual things
 v0011:; "Exit"
     mov ax,0x03
@@ -93,7 +94,7 @@ v0142:; "Flash effect parameters"
     xchg si,di
     pop cx
     loop v0142
-    call v01E9
+    call v01E9; Get random data in AL,DL (the purpose is unknown)
     mov ax,video_data
     mov cx,0x07D0
     xor di,di; Set X=Y = 0
@@ -152,9 +153,9 @@ v01C8:
     jmp v0011
 v01D3:; "PC Speaker - <SkyNet terminal simulator> typing sound"
     push ax
-    mov ah,0x7F
+    mov ah,0x00
     in al,0x61
-    and al,0xFC
+    sub al,0xFC
 ;v01DA:
 @@:
     xor al,0x02
@@ -173,7 +174,7 @@ v01E9:; "Get system time..."
     push dx
     mov ah,0x2C
     int 0x21
-v01F0:; "Video synchronization and smooth delay"
+v01F0:; "...Finally getting random data from DL"
     push dx
     mov ah,0x2C
     int 0x21
