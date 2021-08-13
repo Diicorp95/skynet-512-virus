@@ -8,9 +8,9 @@
 ;---
 new_line equ 0x0D; For SkyNet terminal simulator session
 cr_lf equ 0x0D,0x0A; Microsoft uses the combination to set a new line, you know
-color_attr equ 0x4E;< Color attribute $4E (yellow FG on dark red BG)
-empty_char equ ' '
-match xx yy,color_attr empty_char {video_data equ xx#yy}; Concatenation
+color_attr equ 0x4E; | Color attribute $4E (yellow FG on dark red BG)
+empty_char equ ' ';  v
+video_data equ 0x4E20
 beep_cycles equ 0x0100
 ;---
 start:; "Start"
