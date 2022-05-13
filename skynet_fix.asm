@@ -1,5 +1,5 @@
 ; "Virus.DOS.SkyNet-512". Patch: PC-Beeper improper use.
-; Either author or license are unknown, so I'll use UNLICENSE.
+; Licensed under UNLICENSE license as long as the license is unknown.
 ; Patch (c) Larry "Diicorp95" Holst, 2021.
 
 ; Flat Assembler syntax
